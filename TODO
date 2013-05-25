@@ -1,0 +1,12 @@
+
+
+
+Finish recursive add function.
+
+
+Clean up chests that take multiple parameters
+
+Returning from top-level main should output something.
+
+Keep track of the callstack on the side?
+Keep track of the generated program on the side.

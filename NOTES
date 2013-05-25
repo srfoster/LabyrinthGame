@@ -1,0 +1,9 @@
+Story:
+
+Accessible languages that solve real ("authentic") probelms is important because then we can croud source tasks like program generation, algorithm creation, etc.
+
+We built a language and evaluated its accessibility and "authenticity".
+
+We found that people could solve computational problems without realizing it.  And we found that people came up with creative solutions.
+
+We leveraged this for program synthesis for sorting algorithms and were able to synthesize several different sorting algorithms.
