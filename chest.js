@@ -35,6 +35,34 @@ var Chest = function(data){
   return {
     shape: chest_group,
     action: data.action,
+    param_checks:  data.param_checks,
+    param_filters: data.param_filters,
+    param_errors: data.param_errors,
+    params: [],
+    guardedAction: function(v){
+      var check = this.param_checks[this.params.length]; 
+      if(!check(v))
+      {
+          var msg = this.param_errors[this.params.length];
+          if(msg != undefined)
+             console.log(msg);
+
+          return;
+      }
+
+      var filter = this.param_filters[this.params.length];
+      if(filter != undefined)
+          v = filter(v);
+
+      this.params.push(v);
+
+      if(this.params.length == this.param_checks.length)
+      {
+        this.action();
+        this.params = [];
+      }
+
+    },
     enteredBy: function(other){
       if(other == undefined)
           return false;
@@ -60,4 +88,29 @@ var Chest = function(data){
     }
   }
 
+}
+
+
+function isNumber(i)
+{
+  return isFinite(i.data);
+}
+
+function hasInventory(v)
+{
+  return v.inventory != undefined && v.inventory.items != undefined;
+}
+
+function removeAndReturn(thing)
+{
+  var room = thing.room;
+  room.removeVisitor(thing);
+  room.layer.draw();
+  
+  return thing;
+}
+
+function identity(thing)
+{
+  return thing;
 }

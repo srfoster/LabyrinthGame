@@ -22,38 +22,31 @@ room_3.addDoor({
 
 room_1.addChest({
   color: 'purple',
-  action: function(v){
-    try{
+  param_checks:  [hasInventory],
+  param_filters: [identity],
+  param_errors:  ["No items in inventory"],
+  action: function(){
+        var v = this.params[0];
         var shape = v.inventory.drop(v.inventory.items()[0]);
         room_1.addVisitor(new EmptyVisitor(shape));
         shape.setX(v.getX());
         shape.setY(v.getY());
-    }catch(e){
-    }
   } 
 });
 
 room_1.addChest({
   color: 'teal',
-  param1: undefined,
-  action: function(v){  //Adds two integers.  Can't you see that?
-    if(v.data == undefined)
-      return;
+  param_checks:  [isNumber,        isNumber],
+  param_filters: [removeAndReturn, identity],
+  param_errors:  ["Not a number",  "Not a number"],
+  action: function(){  
+    var int_vis_1 = this.params[0];
+    var int_vis_2 = this.params[1];
 
-    if(this.param1 == undefined)
-    {
-      this.param1 = v;
-      room_1.removeVisitor(v);
-      room_1.layer.draw();
-      return; 
-    }
+    var int_1 = int_vis_1.data;
+    var int_2 = int_vis_2.data;
 
-    this.param1.remove();
-
-    v.data = this.param1.data + v.data;
-    v.setText(""+v.data);
-
-    this.param1 = undefined;
+    int_vis_2.setData(int_2 + int_1);
   } 
 });
 

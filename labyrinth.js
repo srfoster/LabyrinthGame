@@ -192,7 +192,7 @@ var Labyrinth = function(){
                  
                 if(visitor.isSelected() && chest.enteredBy(visitor))
                 {
-                    chest.action(visitor);
+                    chest.guardedAction(visitor);
                 }
               }
             }

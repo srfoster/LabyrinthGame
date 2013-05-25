@@ -57,12 +57,14 @@ var Room = function(data){
         visitors.push(visitor);
         visitorLayer.add(visitor);
         visitorLayer.draw();
+        visitor.room = this;
       },
     removeVisitor:
       function(visitor){
         var i = visitors.indexOf(visitor)
         visitors.splice(i,1);
         visitor.remove();
+        visitor.room = undefined;
       },
     hide:
       function(){

@@ -71,7 +71,14 @@ var Inventory = function(data){
       item.getHeight = function(){ return textBox.getHeight();}
       item.setFill = function(color){textBox.setFill(color);}
       item.setText = function(t){text.setText(t);}
+
       item.data = integer;
+
+      item.setData = function(i){
+        item.setText(""+i);
+        item.data = i;
+        item.draw();
+      };
 
       items.push(integer);
       item_shapes.push(item);

@@ -1,10 +1,15 @@
 
 
 
+
 Finish recursive add function.
+  If statement, or pattern matching...
+    Make doors selective like chests 
+    Or can we just use chests
+  Recursion
 
 
-Clean up chests that take multiple parameters
+Better error messages.
 
 Returning from top-level main should output something.
 
